@@ -103,16 +103,30 @@ test("register into the page @smoke ", async ({ page }) => {
   await page.locator("#register-button").click();
   await expect(page).toHaveTitle("Demo Web Shop. Register");
   await page.waitForTimeout(3000);
-  const loggedMsg = page.locator(
-    "div[class='validation-summary-errors'] ul-li",
-  );
+
+  //so issu in locator
+  // const loggedMsg = page.locator(
+  //   "div[class='validation-summary-errors'] ul-li",
+  // );
+  const loggedMsg = page.locator("div.validation-summary-errors ul li");
   console.log("hi");
   const successMsg = page.locator("//div[@class='result']");
   console.log(successMsg);
 
-  if (await successMsg.isVisible()) {
-    await expect(successMsg).toContainText("registration completed");
-  } else {
+  if (await loggedMsg.isVisible()) {
     await expect(loggedMsg).toContainText("already exists");
+  } else {
+    await expect(successMsg).toContainText("registration completed");
   }
+
+  //we can execute using try-catch
+  // const loggedMsg = page.locator("div.validation-summary-errors ul li");
+
+  // const successMsg = page.locator("div.result");
+
+  // try {
+  //   await expect(loggedMsg).toContainText("already exists", { timeout: 5000 });
+  // } catch {
+  //   await expect(successMsg).toContainText("registration completed");
+  // }
 });
