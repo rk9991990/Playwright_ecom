@@ -105,7 +105,7 @@ test("register into the page @smoke ", async ({ page }) => {
   await expect(page).toHaveTitle("Demo Web Shop. Register");
   await page.waitForTimeout(3000);
 
-  //so issu in locator
+  //so issue was in locator
   // const loggedMsg = page.locator(
   //   "div[class='validation-summary-errors'] ul-li",
   // );
