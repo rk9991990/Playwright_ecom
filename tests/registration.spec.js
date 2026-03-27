@@ -81,11 +81,9 @@ test("register into the page @smoke ", async ({ page }) => {
   await male.check();
   // Assert it is checked
   await expect(male).toBeChecked();
-  await page.waitForTimeout(4000);
   const female = page.locator("#gender-female");
   await female.check();
   expect(female).toBeChecked();
-  await page.waitForTimeout(3000);
   const fname = page.locator("#FirstName");
   fname.fill("Ravi");
   await expect(fname).toHaveValue("Ravi");
@@ -103,7 +101,6 @@ test("register into the page @smoke ", async ({ page }) => {
   await expect(cPassword).toHaveValue("Rr@1029384756");
   await page.locator("#register-button").click();
   await expect(page).toHaveTitle("Demo Web Shop. Register");
-  await page.waitForTimeout(3000);
 
   //so issue was in locator
   // const loggedMsg = page.locator(
